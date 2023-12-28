@@ -7,19 +7,20 @@ import styles from '../../ui/dashboard/users/user.module.css'
 import Image from "next/image";
 import Link from "next/link";
 import Search from '../../ui/dashboard/search/search';
-import Paginatin from '../../ui/dashboard/pagination/pagination';
+import Pagination from '../../ui/dashboard/pagination/pagination';
 
-const UsersPage = async ({ searchParams }) => {
+const CompanyApplication = async ({ searchParams }) => {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
   // const { count, users } = await fetchUsers(q, page);
-
+//   /api/apply-jobs
+// /api/apply-jobs/:id
    
 
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-        <Search placeholder="Search for a user..." />
+        <Search placeholder="Search for a company application..." />
         <Link href="/dashboard/users/add">
           <button className={styles.addButton}>Add New</button>
         </Link>
@@ -28,9 +29,8 @@ const UsersPage = async ({ searchParams }) => {
         <thead>
           <tr>
             <td>Name</td>
-            <td>Email</td>
-            <td>Created At</td>
-            <td>Role</td>
+            <td>お名前</td>
+            <td>email</td>
             <td>Status</td>
             <td>Action</td>
           </tr>
@@ -50,9 +50,7 @@ const UsersPage = async ({ searchParams }) => {
                   {user.username}
                 </div>
               </td>
-              <td>{-
-                
-                user.email}</td>
+              <td>{user.email}</td>
               <td>{user.createdAt?.toString().slice(4, 16)}</td>
               <td>{user.isAdmin ? "Admin" : "Client"}</td>
               <td>{user.isActive ? "active" : "passive"}</td>
@@ -75,10 +73,10 @@ const UsersPage = async ({ searchParams }) => {
           ))} */}
         </tbody>
       </table>
-      <Paginatin/>
+      <Pagination/>
       {/* <Pagination count={count} /> */}
     </div>
   );
 };
 
-export default UsersPage;
+export default CompanyApplication;
