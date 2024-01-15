@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+model concierge {
+  id           Int      @id @default(autoincrement())
+  concierge_id String   @db.VarChar(255)
+  user_id      String   @db.VarChar(255)
+  createdAt    DateTime @default(now()) @db.Timestamp(0)
+  updatedAt    DateTime @default(now()) @db.Timestamp(0)
+}
+model role {
+  role_id   Int      @id @default(autoincrement())
+  name      String   @unique(map: "IDX_ae4578dcaed5adff96595e6166") @db.VarChar(255)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0)
+  user      user[]
+}
+model user {
+  id               String    @id @db.VarChar(36)
+  email            String    @unique(map: "IDX_e12875dfb3b1d92d7d7c5377e2") @db.VarChar(255)
+  password         String    @db.VarChar(255)
+  firstname        String    @db.VarChar(255)
+  lastname         String    @db.VarChar(255)
+  firstname_kana   String?   @db.VarChar(255)
+  lastname_kana    String?   @db.VarChar(255)
+  isActive         Int       @default(0) @db.TinyInt
+  createdAt        DateTime  @default(now()) @db.Timestamp(0)
+  updatedAt        DateTime  @default(now()) @db.Timestamp(0)
+  verify_code      String?   @db.VarChar(255)
+  gender           Int       @default(0) @db.TinyInt
+  birthday         DateTime? @db.Date
+  phone            String?   @db.VarChar(255)
+  zip_code         String?   @db.VarChar(255)
+  prefecture       String?   @db.VarChar(255)
+  location         String?   @db.VarChar(255)
+  job_type         String?   @db.VarChar(255)
+  job_experience   String?   @db.VarChar(255)
+  use_phone        Int       @default(1) @db.TinyInt
+  available        Int?
+  nationality      String?   @db.VarChar(255)
+  jlpt             Int?
+  skills           String?   @db.VarChar(255)
+  avatar_url       String?   @db.VarChar(255)
+  line_nickname    String?   @db.VarChar(255)
+  line_qr          String?   @db.VarChar(255)
+  concierge_active Int       @default(0) @db.TinyInt
+  concierge_note   String?   @db.VarChar(255)
+  role_id          Int?
+  role             role?     @relation(fields: [role_id], references: [role_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_fb2e442d14add3cefbdf33c4561")
+  accounts         Account[]
+
+  @@index([role_id], map: "FK_fb2e442d14add3cefbdf33c4561")
+}
+model Account {
+  id                String  @id @default(dbgenerated("uuid()")) @db.VarChar(255)
+  userId            String  @map("user_id") @db.VarChar(255)
+  type              String  @db.VarChar(255)
+  provider          String  @db.VarChar(255)
+  providerAccountId String  @map("provider_account_id") @db.VarChar(255)
+  access_token      String? @db.Text
+  refresh_token     String? @db.Text
+  expires_at        Int?    @db.Int
+  token_type        String? @db.VarChar(255)
+  scope             String? @db.VarChar(255)
+  id_token          String? @db.Text
+  session_state     String? @db.VarChar(255)
+
+  user user @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}

@@ -1,29 +1,29 @@
 import Image from "next/image";
-import styles from "../../../ui/dashboard/users/singleUser/singleUser.module.css";
+import styles from "../../../ui/dashboard/products/singleProduct/singleProduct.module.css";
 
 import React from "react";
 
-export default function SingleUserPage() {
+export default function SingleProductPage() {
   return (
     <div className={styles.container}>
       <div className={styles.infoContainer}>
         <div className={styles.imgContainer}>
             <Image src="/noavatar.png" alt="" fill></Image>
         </div>
-        john Ten
+        Iphone
       </div>
       <div className={styles.formContainer}>
 
         <div className={styles.form}>
-          <label>UserName</label>
-          <input type="text" name="username" placeholder="userName"/>
-          <label>Email</label>
-          <input type="email" name="email" placeholder="...@gmail.com"/>
-          <label>Password</label>
-          <input type="password" name="password" placeholder=""/>
-          <label>Phone</label>
-          <input type="text" name="phone" placeholder="+123456"/>
-          <label>Address</label>
+          <label>Title</label>
+          <input type="text" name="title" placeholder="userName"/>
+          <label>Price</label>
+          <input type="number" name="price" placeholder="...@gmail.com"/>
+          <label>Stock</label>
+          <input type="number" name="stock" placeholder=""/>
+          <label>Color</label>
+          <input type="text" name="colo" placeholder="+123456"/>
+          <label>Size</label>
           <textarea name="address" placeholder=""/>
           <label htmlFor="">is Admin?</label>
           <select name="isAdmin" id="isAdmin">

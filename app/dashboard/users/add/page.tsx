@@ -1,4 +1,4 @@
-import styles from '../../../ui/dashboard/user/addUser/addUser.module.css'
+import styles from "../../../ui/dashboard/users/addUser/addUser.module.css"
 // import { addProduct } from "@/app/lib/actions";
 
 const AddUserPage = () => {

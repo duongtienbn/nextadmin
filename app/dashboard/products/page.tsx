@@ -32,6 +32,30 @@ const ProductsPage = async ({ searchParams }) => {
           </tr>
         </thead>
         <tbody>
+        <tr>
+            <td>
+              <div className={styles.user}>
+                <Image
+                  src="/noavatar.png"
+                  alt=""
+                  width={40}
+                  height={40}
+                  className={styles.userImage}
+                ></Image>{" "}
+                Ten
+              </div>
+            </td>
+            <td>email@gmail.com</td>
+            <td>04/01/2024</td>
+            <td>Admin</td>
+            <td>Active</td>
+            <td>
+              <Link href="/dashboard/products /test">
+                <button className={`${styles.button} ${styles.view}`}>View</button>
+              </Link>
+                <button className={`${styles.button} ${styles.delete}`}>Delete</button>
+            </td>
+          </tr>
           {/* {products.map((product) => (
             <tr key={product.id}>
               <td>

@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import MenuLink from "./menuLink/menuLink";
 import styles from "./sidebar.module.css";
@@ -14,6 +15,7 @@ import {
   MdLogout,
 } from "react-icons/md";
 // import { auth, signOut } from "@/app/auth";
+import { signOut, useSession } from "next-auth/react";
 
 const menuItems = [
   {
@@ -83,7 +85,7 @@ const menuItems = [
   },
 ];
 
-const Sidebar = async () => {
+const Sidebar = () => {
   // const { user } = await auth();
   return (
     <div className={styles.container}>
@@ -110,17 +112,17 @@ const Sidebar = async () => {
           </li>
         ))}
       </ul>
-      <form
+      {/* <form
         action={async () => {
           "use server";
-          // await signOut();
+          await signOut();
         }}
-      >
-        <button className={styles.logout}>
+      > */}
+        <button className={styles.logout} onClick={()=>signOut()}>
           <MdLogout />
-          Logout
+         <p> Logout</p>
         </button>
-      </form>
+      {/* </form> */}
     </div>
   );
 };

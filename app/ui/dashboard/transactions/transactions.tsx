@@ -8,7 +8,7 @@ export default function Transaction() {
     <table className={styles.table}>
         <thead>
           <tr>
-            <td>#</td>
+            {/* <td>#</td> */}
             <td>Name</td>
             <td>Status</td>
             <td>Company application</td>
